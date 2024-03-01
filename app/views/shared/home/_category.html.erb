@@ -1,0 +1,23 @@
+<section class="Category">
+  <div class="Container">
+    <h2 class="Category__title">CATEGORY</h2>
+    <ul class="CategoryList">
+      <% categories.each do |category| %>
+        <li class="CategoryItem">
+          <div class="CategoryItem__image-wrapper">
+            <% image_name = category_to_image_name(category.name) %>
+            <% if image_name.nil? %>
+              <%= image_tag(asset_path("noimage/small.png"), alt: category.name, class: "d-block w-100") %>
+            <% else %>
+              <%= image_tag(asset_path("home/category/#{image_name}.jpg"), alt: category.name, class: "d-block w-100") %>
+            <% end %>
+            <div class="CategoryItem__masking">
+              <%= link_to "VIEW", category_path(category.id), class: "CategoryItem__button" %>
+            </div>
+          </div>
+          <h3 class="CategoryItem__name"><%= t(category.name, default: category.name) %></h3>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</section>

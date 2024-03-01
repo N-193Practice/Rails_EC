@@ -1,0 +1,19 @@
+<div class="CategoriesContainer">
+  <%= render 'shared/breadcrumbs', breadcrumbs: @top_section_breadcrumbs %>
+  <h1 class="CategoriesTitle"><%= t(@category_taxon.name, default: @category_taxon.name) %></h1>
+  <section class="CategoryProducts">
+    <ul class="CategoryProducts__list">
+      <% @products.each do |product| %>
+        <li class="CategoryProduct">
+          <%= link_to product_path(product.id) do %>
+            <%= image_tag(product.images.first.url(:product), :class => "CategoryProduct__image", :alt => product.name) %>
+            <p class="CategoryProduct__name">
+              <%= product.name %>
+            </p>
+            <span class="CategoryProduct__price"><%= product.display_price %></span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+</div>
